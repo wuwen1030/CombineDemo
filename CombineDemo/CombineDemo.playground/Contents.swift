@@ -20,14 +20,14 @@ example("empty") {
     .cancel()
 }
 
-example("just") {
-    Publishers.Just("🍎").sink(receiveCompletion: { completion in
-        print("completed")
-    }) { value in
-        print("\(value)")
-    }
-    .cancel()
-}
+//example("just") {
+//    Publishers.Just("🍎").sink(receiveCompletion: { completion in
+//        print("completed")
+//    }) { value in
+//        print("\(value)")
+//    }
+//    .cancel()
+//}
 
 example("sequence1") {
     Publishers.Sequence<[String], Never>(sequence: ["🐶", "🐱", "🐭", "🐹"]).sink(receiveCompletion: { completion in
@@ -48,11 +48,10 @@ example("sequence2") {
 }
 
 example("key-path") {
-    
-    // TODO: key - value
+
     class Student: NSObject  {
         var id: Int
-        var name: String
+        @objc dynamic var name: String
 
         init(_ id: Int, _ name: String) {
             self.id = id
@@ -60,7 +59,13 @@ example("key-path") {
         }
     }
 
-    var student = Student(1, "Jack")
-    
+    let student = Student(1, "Jack")
+
+    let stream = student.publisher(for: \.name).sink { value in
+        print("\(value)")
+    }
+
     student.name = "Pony"
+    stream.cancel()
+    student.name = "Robin"
 }
