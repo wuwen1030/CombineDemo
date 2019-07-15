@@ -20,14 +20,14 @@ example("empty") {
     .cancel()
 }
 
-//example("just") {
-//    Publishers.Just("🍎").sink(receiveCompletion: { completion in
-//        print("completed")
-//    }) { value in
-//        print("\(value)")
-//    }
-//    .cancel()
-//}
+example("just") {
+    Just("🍎").sink(receiveCompletion: { completion in
+        print("completed")
+    }) { value in
+        print("\(value)")
+    }
+    .cancel()
+}
 
 example("sequence1") {
     Publishers.Sequence<[String], Never>(sequence: ["🐶", "🐱", "🐭", "🐹"]).sink(receiveCompletion: { completion in
