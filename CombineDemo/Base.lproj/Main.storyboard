@@ -56,7 +56,7 @@
                                             <segue destination="rRV-iD-5pX" kind="show" id="vtH-mb-U0w"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="pZ1-C7-8Oo" style="IBUITableViewCellStyleDefault" id="e9B-ha-AZX">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="pZ1-C7-8Oo" style="IBUITableViewCellStyleDefault" id="e9B-ha-AZX">
                                         <rect key="frame" x="0.0" y="78" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e9B-ha-AZX" id="JnO-eC-lZZ">
@@ -228,6 +228,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duh-FB-23u">
                                 <rect key="frame" x="157" y="368" width="100" height="21"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="HJO-WR-UqK"/>
                                     <constraint firstAttribute="width" constant="100" id="z7a-y1-k0x"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
