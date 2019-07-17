@@ -14,7 +14,10 @@
 		1E38755D22B7C5860000A4D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E38755C22B7C5860000A4D1 /* Assets.xcassets */; };
 		1E38756022B7C5860000A4D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E38755E22B7C5860000A4D1 /* LaunchScreen.storyboard */; };
 		1E38756B22B7C5860000A4D1 /* CombineDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E38756A22B7C5860000A4D1 /* CombineDemoTests.swift */; };
+		1E77C77C22DDA84900573151 /* GithubServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E77C77B22DDA84900573151 /* GithubServiceProtocols.swift */; };
+		1E77C77E22DDA93500573151 /* GithubServiceImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E77C77D22DDA93500573151 /* GithubServiceImplementations.swift */; };
 		1EA5C3A122D8DE01009C030A /* NumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA5C3A022D8DE01009C030A /* NumbersViewController.swift */; };
+		1EA5C3A322DC23C6009C030A /* GithubSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA5C3A222DC23C6009C030A /* GithubSignupViewController.swift */; };
 		1EAACCC822CB543800231FD0 /* SimpleValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAACCC722CB543800231FD0 /* SimpleValidationViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +44,10 @@
 		1E38756A22B7C5860000A4D1 /* CombineDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineDemoTests.swift; sourceTree = "<group>"; };
 		1E38756C22B7C5860000A4D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E38757522B881E60000A4D1 /* CombineDemo.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CombineDemo.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		1E77C77B22DDA84900573151 /* GithubServiceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubServiceProtocols.swift; sourceTree = "<group>"; };
+		1E77C77D22DDA93500573151 /* GithubServiceImplementations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubServiceImplementations.swift; sourceTree = "<group>"; };
 		1EA5C3A022D8DE01009C030A /* NumbersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersViewController.swift; sourceTree = "<group>"; };
+		1EA5C3A222DC23C6009C030A /* GithubSignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubSignupViewController.swift; sourceTree = "<group>"; };
 		1EAACCC722CB543800231FD0 /* SimpleValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleValidationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +100,9 @@
 				1E38756122B7C5860000A4D1 /* Info.plist */,
 				1EAACCC722CB543800231FD0 /* SimpleValidationViewController.swift */,
 				1EA5C3A022D8DE01009C030A /* NumbersViewController.swift */,
+				1EA5C3A222DC23C6009C030A /* GithubSignupViewController.swift */,
+				1E77C77B22DDA84900573151 /* GithubServiceProtocols.swift */,
+				1E77C77D22DDA93500573151 /* GithubServiceImplementations.swift */,
 			);
 			path = CombineDemo;
 			sourceTree = "<group>";
@@ -208,6 +217,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EA5C3A322DC23C6009C030A /* GithubSignupViewController.swift in Sources */,
+				1E77C77C22DDA84900573151 /* GithubServiceProtocols.swift in Sources */,
+				1E77C77E22DDA93500573151 /* GithubServiceImplementations.swift in Sources */,
 				1E38755822B7C5850000A4D1 /* IndexViewController.swift in Sources */,
 				1EA5C3A122D8DE01009C030A /* NumbersViewController.swift in Sources */,
 				1E38755422B7C5850000A4D1 /* AppDelegate.swift in Sources */,

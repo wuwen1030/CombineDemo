@@ -32,7 +32,6 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="128-ka-iBa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
                             <tableViewSection id="D1Q-uc-ydv">
                                 <cells>
@@ -76,13 +75,25 @@
                                             <segue destination="TaL-lZ-GlU" kind="show" id="pop-XV-MrN"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="TrH-1s-gAX">
-                                        <rect key="frame" x="0.0" y="128" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="U9V-wW-4Rc" style="IBUITableViewCellStyleDefault" id="TrH-1s-gAX">
+                                        <rect key="frame" x="0.0" y="128" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TrH-1s-gAX" id="V96-sd-Ikg">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Github signup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U9V-wW-4Rc">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="qjE-sI-6nJ" kind="show" id="4V0-Pj-zJQ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -171,6 +182,84 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sS2-3u-Etr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2409" y="-179"/>
+        </scene>
+        <!--Github signup-->
+        <scene sceneID="1a1-Zt-GTq">
+            <objects>
+                <viewController id="qjE-sI-6nJ" customClass="GithubSignupViewController" customModule="CombineDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ciE-fH-e71">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OoR-a2-sg2">
+                                <rect key="frame" x="20" y="108" width="374" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="ZcF-s3-zT1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eWM-eD-yrB">
+                                <rect key="frame" x="20" y="150" width="374" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="vA9-v6-trd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password Repeat" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j4C-NS-KsB">
+                                <rect key="frame" x="20" y="192" width="374" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="cYC-UR-sSb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZS8-no-o61">
+                                <rect key="frame" x="20" y="290" width="374" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1Ja-jd-Mka"/>
+                                </constraints>
+                                <state key="normal" title="Sign up"/>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wrU-hf-CAS">
+                                <rect key="frame" x="366" y="115" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="IJ1-u4-0Mn"/>
+                                    <constraint firstAttribute="width" constant="20" id="knk-8s-9PX"/>
+                                </constraints>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="OoR-a2-sg2" firstAttribute="leading" secondItem="P5O-HJ-GHf" secondAttribute="leading" constant="20" id="718-ER-lXB"/>
+                            <constraint firstItem="wrU-hf-CAS" firstAttribute="trailing" secondItem="OoR-a2-sg2" secondAttribute="trailing" constant="-8" id="JWl-vo-EGl"/>
+                            <constraint firstItem="ZS8-no-o61" firstAttribute="leading" secondItem="P5O-HJ-GHf" secondAttribute="leading" constant="20" id="LG6-gF-e5m"/>
+                            <constraint firstItem="P5O-HJ-GHf" firstAttribute="trailing" secondItem="OoR-a2-sg2" secondAttribute="trailing" constant="20" id="Sr3-s1-4BD"/>
+                            <constraint firstItem="ZS8-no-o61" firstAttribute="top" secondItem="j4C-NS-KsB" secondAttribute="bottom" constant="64" id="VxH-8r-snR"/>
+                            <constraint firstItem="P5O-HJ-GHf" firstAttribute="trailing" secondItem="ZS8-no-o61" secondAttribute="trailing" constant="20" id="YVe-aQ-1vD"/>
+                            <constraint firstItem="OoR-a2-sg2" firstAttribute="top" secondItem="P5O-HJ-GHf" secondAttribute="top" constant="20" id="YVh-g8-dzT"/>
+                            <constraint firstItem="P5O-HJ-GHf" firstAttribute="trailing" secondItem="j4C-NS-KsB" secondAttribute="trailing" constant="20" id="d3O-QP-Fic"/>
+                            <constraint firstItem="P5O-HJ-GHf" firstAttribute="trailing" secondItem="eWM-eD-yrB" secondAttribute="trailing" constant="20" id="dwI-u3-sZE"/>
+                            <constraint firstItem="eWM-eD-yrB" firstAttribute="top" secondItem="OoR-a2-sg2" secondAttribute="bottom" constant="8" id="fh3-tb-vk7"/>
+                            <constraint firstItem="j4C-NS-KsB" firstAttribute="leading" secondItem="P5O-HJ-GHf" secondAttribute="leading" constant="20" id="gtE-cS-2IL"/>
+                            <constraint firstItem="wrU-hf-CAS" firstAttribute="centerY" secondItem="OoR-a2-sg2" secondAttribute="centerY" id="hUz-pA-dJI"/>
+                            <constraint firstItem="j4C-NS-KsB" firstAttribute="top" secondItem="eWM-eD-yrB" secondAttribute="bottom" constant="8" id="w2W-eN-cW7"/>
+                            <constraint firstItem="eWM-eD-yrB" firstAttribute="leading" secondItem="P5O-HJ-GHf" secondAttribute="leading" constant="20" id="web-4X-xY0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="P5O-HJ-GHf"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Github signup" id="XcC-mq-Rwe"/>
+                    <connections>
+                        <outlet property="loadingIndicator" destination="wrU-hf-CAS" id="qda-ms-tzB"/>
+                        <outlet property="passwordRepeatTextField" destination="j4C-NS-KsB" id="NU8-6L-j3U"/>
+                        <outlet property="passwordTextField" destination="eWM-eD-yrB" id="tQq-pj-uUx"/>
+                        <outlet property="usernameTextField" destination="OoR-a2-sg2" id="Ufw-bf-Gax"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aB3-9p-UDr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3081.1594202898555" y="-180.13392857142856"/>
         </scene>
         <!--Adding numbers-->
         <scene sceneID="i6m-WD-oXd">
