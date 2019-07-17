@@ -12,7 +12,6 @@ import Combine
 class GithubDefaultValidationService: GithubValidationService {
     static let shared = GithubDefaultValidationService(API: GithubDefaultAPI.shared)
     let API: GithubAPI
-//    private var validateSubject: PassthroughSubject<ValidationResult, Never>
 
     init(API: GithubAPI) {
         self.API = API
@@ -37,6 +36,34 @@ class GithubDefaultValidationService: GithubValidationService {
             .prepend(.validating)
             .eraseToAnyPublisher()
     }
+    
+    let minPasswordCount = 5
+    
+    func validatePassword(_ password: String) -> ValidationResult {
+        if password.count == 0 {
+            return .empty
+        }
+        
+        if password.count < minPasswordCount {
+            return .failed(message: "Password must be at least \(minPasswordCount) characters")
+        }
+        
+        return .ok(message: "Password acceptable")
+    }
+    
+    func validateRepeatedPassword(_ password: String, repeatedPassword: String) -> ValidationResult {
+        if repeatedPassword.count == 0 {
+            return .empty
+        }
+        
+        if repeatedPassword == password {
+            return .ok(message: "Password repeated")
+        }
+        else {
+            return .failed(message: "Password different")
+        }
+    }
+    
 }
 
 class GithubDefaultAPI: GithubAPI {

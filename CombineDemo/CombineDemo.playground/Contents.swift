@@ -69,3 +69,18 @@ example("key-path") {
     stream.cancel()
     student.name = "Robin"
 }
+
+example("PassthroughSubject") {
+    let subject = PassthroughSubject<String, Never>()
+    subject.sink { value in
+        print("01: \(value)")
+    }
+    subject.send("🐶")
+    subject.send("🐱")
+    
+    subject.sink { value in
+        print("02: \(value)")
+    }
+    subject.send("🅰️")
+    subject.send("🅱️")
+}
