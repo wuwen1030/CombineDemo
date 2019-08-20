@@ -9,21 +9,6 @@
 import UIKit
 import Combine
 
-extension UITextField {
-    func inputPublisher(debounceInterval: Int = 500) -> AnyPublisher<String, Never> {
-        NotificationCenter.default.publisher(for: UITextField.textDidChangeNotification,
-                                             object: self)
-            .map { notication -> String in
-                let sender = notication.object as! UITextField
-                return sender.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-            }
-            .debounce(for: .milliseconds(debounceInterval), scheduler: RunLoop.main)
-            .removeDuplicates()
-            .prepend(self.text ?? "")
-            .eraseToAnyPublisher()
-    }
-}
-
 class GithubSignupViewController: UIViewController {
 
     @IBOutlet weak var usernameTextField: UITextField!
@@ -35,42 +20,44 @@ class GithubSignupViewController: UIViewController {
     @IBOutlet weak var passwordValidView: UIImageView!
     @IBOutlet weak var passwordRepeatValidView: UIImageView!
     
+    var usernameValidStream: AnyCancellable?
     var signupStream: AnyCancellable?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
-        
         let usernameValidPublisher = usernameTextField.inputPublisher()
             .print("username")
             .flatMap { GithubDefaultValidationService.shared.validateUsername($0) }
-        
-        _ = usernameValidPublisher.receive(on: RunLoop.main)
-            .sink { result in
-                switch result {
-                case .empty:
-                    self.usernameValidView.image = UIImage(named: "error")
-                    self.loadingIndicator.stopAnimating()
-                case .ok:
-                    self.usernameValidView.image = UIImage(named: "success")
-                    self.loadingIndicator.stopAnimating()
-                case .failed:
-                    self.usernameValidView.image = UIImage(named: "error")
-                    self.loadingIndicator.stopAnimating()
-                case .validating:
-                    self.usernameValidView.image = nil
-                    self.loadingIndicator.startAnimating()
-                }
+                
+        usernameValidStream = AnyCancellable (
+            usernameValidPublisher.receive(on: RunLoop.main)
+                .sink { result in
+                    switch result {
+                    case .empty:
+                        self.usernameValidView.image = UIImage(named: "error")
+                        self.loadingIndicator.stopAnimating()
+                    case .ok:
+                        self.usernameValidView.image = UIImage(named: "success")
+                        self.loadingIndicator.stopAnimating()
+                    case .failed:
+                        self.usernameValidView.image = UIImage(named: "error")
+                        self.loadingIndicator.stopAnimating()
+                    case .validating:
+                        self.usernameValidView.image = nil
+                        self.loadingIndicator.startAnimating()
+                    }
             }
+        )
         
         let passwordValidPublisher = passwordTextField.inputPublisher()
             .print("password")
             .map {GithubDefaultValidationService.shared.validatePassword($0)}
         
         _ = passwordValidPublisher
+            .map{ UIImage(named: $0.isValid ? "success" : "error") }
             .receive(on: RunLoop.main)
-            .sink { self.passwordValidView.image = UIImage(named: $0.isValid ? "success" : "error") }
+            .assign(to: \.image, on: passwordValidView)
         
         let passwordRepeatValidPublisher = Publishers.CombineLatest(
             passwordTextField.inputPublisher(),
@@ -79,17 +66,20 @@ class GithubSignupViewController: UIViewController {
             .map {GithubDefaultValidationService.shared.validateRepeatedPassword($0.0, repeatedPassword: $0.1)}
         
         _ = passwordRepeatValidPublisher
+            .map{ UIImage(named: $0.isValid ? "success" : "error") }
             .receive(on: RunLoop.main)
-            .sink { self.passwordRepeatValidView.image = UIImage(named: $0.isValid ? "success" : "error") }
+            .assign(to: \.image, on: passwordRepeatValidView)
 
-        signupStream = Publishers.CombineLatest3(usernameValidPublisher, passwordValidPublisher, passwordRepeatValidPublisher)
+        _ = Publishers.CombineLatest3(usernameValidPublisher, passwordValidPublisher, passwordRepeatValidPublisher)
+            .print("signupValid")
             .map { $0.0.isValid && $0.1.isValid && $0.2.isValid}
             .removeDuplicates()
             .receive(on: RunLoop.main)
             .assign(to: \.isEnabled, on: submitButton)
-    }
-    
-    func setupUI() {
         
+//        signupStream = AnyCancellable(
+//            submitButton.tap.sink { _ in
+//                print("tapped")
+//        })
     }
 }

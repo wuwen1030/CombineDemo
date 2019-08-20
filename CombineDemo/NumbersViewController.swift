@@ -31,7 +31,7 @@ class NumbersViewController: UIViewController {
         
         number1TextField.text = "1"
         number2TextField.text = "2"
-        number1TextField.text = "3"
+        number3TextField.text = "3"
         number1 = "1"
         number2 = "2"
         number3 = "3"

@@ -16,72 +16,41 @@ class SimpleValidationViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signupButton: UIButton!
-    @Published var username: String = ""
-    @Published var password: String = ""
-    
-    var signupButtonStream: AnyCancellable?
-    var usernameStream: AnyCancellable?
-    var passwordStream: AnyCancellable?
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let validatedUsername = $username
-            .removeDuplicates()
-            .map {
-                $0.count >= minCount ? $0 : nil
-            }
+        let validatedUsername = usernameTextField.inputPublisher(debounceInterval: 100)
+            .map { $0.count >= minCount ? $0 : nil }
         
-        let validatedPassword = $password
-            .removeDuplicates()
-            .map {
-                $0.count >= minCount ? $0 : nil
-            }
+        let validatedPassword = passwordTextField.inputPublisher(debounceInterval: 100)
+            .map { $0.count >= minCount ? $0 : nil }
         
-        let validatedCredentials = Publishers.CombineLatest(validatedUsername, validatedPassword)
-            .map { (username, password) -> (String, String)? in
-                guard let uname = username, let pwd = password else { return nil }
-                return (uname, pwd)
-            }
-        
-        
-        usernameStream = validatedUsername
+        _ = validatedUsername
             .print("username")
-            .map {
-                $0 != nil ? UIColor.green : UIColor.red
-            }
+            .map { $0 != nil ? UIColor.green : UIColor.red }
+            .receive(on: RunLoop.main)
             .assign(to: \.backgroundColor, on: usernameTextField)
-
-        passwordStream = validatedPassword
+        
+        _ = validatedPassword
             .print("password")
-            .map {
-                $0 != nil ? UIColor.green : UIColor.red
-            }
+            .map { $0 != nil ? UIColor.green : UIColor.red }
+            .receive(on: RunLoop.main)
             .assign(to: \.backgroundColor, on: passwordTextField)
         
-        signupButtonStream = validatedCredentials
+        _ = Publishers.CombineLatest(validatedUsername, validatedPassword)
             .print("validatedCredentials")
-            .map { $0 != nil }
+            .map { (username, password) -> Bool in
+                guard let _ = username, let _ = password
+                    else {
+                        return false
+                }
+                return true
+            }
             .receive(on: RunLoop.main)
             .assign(to: \.isEnabled, on: signupButton)
+    }
         
-        self.username = self.usernameTextField.text ?? ""
-        self.password = self.passwordTextField.text ?? ""
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
-    
-    @IBAction func usernameChanged(_ sender: UITextField) {
-        username = sender.text ?? ""
-    }
-    
-    @IBAction func passwordChanged(_ sender: UITextField) {
-        password = sender.text ?? ""
-    }
-    
-    
     /*"
      // MARK: - Navigation
      
