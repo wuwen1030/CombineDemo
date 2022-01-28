@@ -26,7 +26,7 @@ class GithubSignupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let usernameValidPublisher = usernameTextField.textPublisher()
+        let usernameValidPublisher = usernameTextField.uicb.textPublisher()
             .print("username")
             .flatMap { GithubDefaultValidationService.shared.validateUsername($0) }
                 
@@ -50,7 +50,7 @@ class GithubSignupViewController: UIViewController {
             }
         )
         
-        let passwordValidPublisher = passwordTextField.textPublisher()
+        let passwordValidPublisher = passwordTextField.uicb.textPublisher()
             .print("password")
             .map {GithubDefaultValidationService.shared.validatePassword($0)}
         
@@ -60,8 +60,8 @@ class GithubSignupViewController: UIViewController {
             .assign(to: \.image, on: passwordValidView)
         
         let passwordRepeatValidPublisher = Publishers.CombineLatest(
-            passwordTextField.textPublisher(),
-            passwordRepeatTextField.textPublisher())
+            passwordTextField.uicb.textPublisher(),
+            passwordRepeatTextField.uicb.textPublisher())
             .print("repeatPassword")
             .map {GithubDefaultValidationService.shared.validateRepeatedPassword($0.0, repeatedPassword: $0.1)}
         

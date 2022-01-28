@@ -19,10 +19,10 @@ class NumbersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let number1 = self.number1TextField.textPublisher().print("number1")
-        let number2 = self.number2TextField.textPublisher().print("number2")
-        let number3 = self.number3TextField.textPublisher().print("number3")
-
+        let number1 = self.nu mber1TextField.uicb.textPublisher().print("number1")
+        let number2 = self.number2TextField.uicb.textPublisher().print("number2")
+        let number3 = self.number3TextField.uicb.textPublisher().print("number3")
+                
         resultStream = Publishers.CombineLatest3(number1, number2, number3)
             .print("result")
             .map { (value) -> String in

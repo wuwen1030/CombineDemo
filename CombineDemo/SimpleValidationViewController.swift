@@ -23,10 +23,10 @@ class SimpleValidationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let validatedUsername = usernameTextField.textPublisher(debounceInterval: 100)
+        let validatedUsername = usernameTextField.uicb.textPublisher(debounceInterval: 100)
             .map { $0.count >= minCount ? $0 : nil }
         
-        let validatedPassword = passwordTextField.textPublisher(debounceInterval: 100)
+        let validatedPassword = passwordTextField.uicb.textPublisher(debounceInterval: 100)
             .map { $0.count >= minCount ? $0 : nil }
         
         usernameStream = validatedUsername

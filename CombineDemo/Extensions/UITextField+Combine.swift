@@ -9,17 +9,17 @@
 import UIKit
 import Combine
 
-extension UITextField {
+extension UIKitCombineExtension where ExtendedType: UITextField {
     func textPublisher(debounceInterval: Int = 500) -> AnyPublisher<String, Never> {
         NotificationCenter.default.publisher(for: UITextField.textDidChangeNotification,
-                                             object: self)
+                                                object: self.type)
             .map { notication -> String in
                 let sender = notication.object as! UITextField
                 return sender.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             }
             .debounce(for: .milliseconds(debounceInterval), scheduler: RunLoop.main)
             .removeDuplicates()
-            .prepend(self.text ?? "")
+            .prepend(self.type.text ?? "")
             .eraseToAnyPublisher()
     }
 }

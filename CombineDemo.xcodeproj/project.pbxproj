@@ -21,6 +21,7 @@
 		1EA5C3A322DC23C6009C030A /* GithubSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA5C3A222DC23C6009C030A /* GithubSignupViewController.swift */; };
 		1EAACCC822CB543800231FD0 /* SimpleValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAACCC722CB543800231FD0 /* SimpleValidationViewController.swift */; };
 		1EFAAFD522E16ECC0056DEEF /* UIControl+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFAAFD422E16ECC0056DEEF /* UIControl+Combine.swift */; };
+		2B4396FF27A3903800E27DAB /* UIKitCombineExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4396FE27A3903800E27DAB /* UIKitCombineExtend.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		1EA5C3A222DC23C6009C030A /* GithubSignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubSignupViewController.swift; sourceTree = "<group>"; };
 		1EAACCC722CB543800231FD0 /* SimpleValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleValidationViewController.swift; sourceTree = "<group>"; };
 		1EFAAFD422E16ECC0056DEEF /* UIControl+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Combine.swift"; sourceTree = "<group>"; };
+		2B4396FE27A3903800E27DAB /* UIKitCombineExtend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitCombineExtend.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		1E38755222B7C5850000A4D1 /* CombineDemo */ = {
 			isa = PBXGroup;
 			children = (
+				2B4396FD27A38FEE00E27DAB /* Extensions */,
 				1E38757522B881E60000A4D1 /* CombineDemo.playground */,
 				1E38755322B7C5850000A4D1 /* AppDelegate.swift */,
 				1E38755522B7C5850000A4D1 /* SceneDelegate.swift */,
@@ -107,8 +110,6 @@
 				1EA5C3A222DC23C6009C030A /* GithubSignupViewController.swift */,
 				1E77C77B22DDA84900573151 /* GithubServiceProtocols.swift */,
 				1E77C77D22DDA93500573151 /* GithubServiceImplementations.swift */,
-				1EFAAFD422E16ECC0056DEEF /* UIControl+Combine.swift */,
-				1E9B28ED230B99BE006CC61A /* UITextField+Combine.swift */,
 			);
 			path = CombineDemo;
 			sourceTree = "<group>";
@@ -120,6 +121,16 @@
 				1E38756C22B7C5860000A4D1 /* Info.plist */,
 			);
 			path = CombineDemoTests;
+			sourceTree = "<group>";
+		};
+		2B4396FD27A38FEE00E27DAB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1EFAAFD422E16ECC0056DEEF /* UIControl+Combine.swift */,
+				1E9B28ED230B99BE006CC61A /* UITextField+Combine.swift */,
+				2B4396FE27A3903800E27DAB /* UIKitCombineExtend.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +244,7 @@
 				1E9B28EE230B99BE006CC61A /* UITextField+Combine.swift in Sources */,
 				1E38755622B7C5850000A4D1 /* SceneDelegate.swift in Sources */,
 				1EAACCC822CB543800231FD0 /* SimpleValidationViewController.swift in Sources */,
+				2B4396FF27A3903800E27DAB /* UIKitCombineExtend.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
