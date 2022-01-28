@@ -16,10 +16,8 @@ class SimpleValidationViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signupButton: UIButton!
-    var usernameStream: AnyCancellable?
-    var passwordStream: AnyCancellable?
-    var validationStream: AnyCancellable?
-        
+    var cancellables = Set<AnyCancellable>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,19 +27,21 @@ class SimpleValidationViewController: UIViewController {
         let validatedPassword = passwordTextField.uicb.textPublisher(debounceInterval: 100)
             .map { $0.count >= minCount ? $0 : nil }
         
-        usernameStream = validatedUsername
+        validatedUsername
             .print("username")
             .map { $0 != nil ? UIColor.green : UIColor.red }
             .receive(on: RunLoop.main)
             .assign(to: \.backgroundColor, on: usernameTextField)
+            .store(in: &cancellables)
         
-        passwordStream = validatedPassword
+        validatedPassword
             .print("password")
             .map { $0 != nil ? UIColor.green : UIColor.red }
             .receive(on: RunLoop.main)
             .assign(to: \.backgroundColor, on: passwordTextField)
+            .store(in: &cancellables)
         
-        validationStream = Publishers.CombineLatest(validatedUsername, validatedPassword)
+        Publishers.CombineLatest(validatedUsername, validatedPassword)
             .print("validatedCredentials")
             .map { (username, password) -> Bool in
                 guard let _ = username, let _ = password
@@ -52,16 +52,6 @@ class SimpleValidationViewController: UIViewController {
             }
             .receive(on: RunLoop.main)
             .assign(to: \.isEnabled, on: signupButton)
+            .store(in: &cancellables)
     }
-        
-    /*"
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
