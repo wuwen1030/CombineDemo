@@ -63,7 +63,7 @@ extension UIControl {
 }
 
 extension UIControl {
-    public var tap: UIControl.EventPublisher {
+    public var touchUpInside: UIControl.EventPublisher {
         return self.publisher(for: .touchUpInside)
     }
 }

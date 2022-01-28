@@ -16,29 +16,32 @@ class SimpleValidationViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signupButton: UIButton!
+    var usernameStream: AnyCancellable?
+    var passwordStream: AnyCancellable?
+    var validationStream: AnyCancellable?
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let validatedUsername = usernameTextField.inputPublisher(debounceInterval: 100)
+        let validatedUsername = usernameTextField.textPublisher(debounceInterval: 100)
             .map { $0.count >= minCount ? $0 : nil }
         
-        let validatedPassword = passwordTextField.inputPublisher(debounceInterval: 100)
+        let validatedPassword = passwordTextField.textPublisher(debounceInterval: 100)
             .map { $0.count >= minCount ? $0 : nil }
         
-        _ = validatedUsername
+        usernameStream = validatedUsername
             .print("username")
             .map { $0 != nil ? UIColor.green : UIColor.red }
             .receive(on: RunLoop.main)
             .assign(to: \.backgroundColor, on: usernameTextField)
         
-        _ = validatedPassword
+        passwordStream = validatedPassword
             .print("password")
             .map { $0 != nil ? UIColor.green : UIColor.red }
             .receive(on: RunLoop.main)
             .assign(to: \.backgroundColor, on: passwordTextField)
         
-        _ = Publishers.CombineLatest(validatedUsername, validatedPassword)
+        validationStream = Publishers.CombineLatest(validatedUsername, validatedPassword)
             .print("validatedCredentials")
             .map { (username, password) -> Bool in
                 guard let _ = username, let _ = password

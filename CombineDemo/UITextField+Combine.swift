@@ -10,7 +10,7 @@ import UIKit
 import Combine
 
 extension UITextField {
-    func inputPublisher(debounceInterval: Int = 500) -> AnyPublisher<String, Never> {
+    func textPublisher(debounceInterval: Int = 500) -> AnyPublisher<String, Never> {
         NotificationCenter.default.publisher(for: UITextField.textDidChangeNotification,
                                              object: self)
             .map { notication -> String in

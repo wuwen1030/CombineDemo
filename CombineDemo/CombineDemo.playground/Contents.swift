@@ -11,17 +11,17 @@ public func example(_ description: String, action: () -> Void) {
 }
 
 
-example("empty") {
-    Publishers.Empty<Any, Error>().sink(receiveCompletion: { completion in
-        print("completed")
-    }) { (_) in
-        
-    }
-    .cancel()
-}
+//example("empty") {
+//    Publishers.Empty<Any, Error>().sink(receiveCompletion: { completion in
+//        print("completed")
+//    }) { (_) in
+//
+//    }
+//    .cancel()
+//}
 
 example("just") {
-    Just("🍎").sink(receiveCompletion: { completion in
+    Just("🍎").print("Just").sink(receiveCompletion: { completion in
         print("completed")
     }) { value in
         print("\(value)")
@@ -35,16 +35,14 @@ example("sequence1") {
     }) { value in
         print("\(value)")
     }
-    .cancel()
 }
 
 example("sequence2") {
-    ["🐶", "🐱", "🐭", "🐹"].publisher().sink(receiveCompletion: { completion in
+    ["🐶", "🐱", "🐭", "🐹"].publisher.sink(receiveCompletion: { completion in 
         print("completed")
     }) { value in
         print("\(value)")
     }
-    .cancel()
 }
 
 example("key-path") {
@@ -72,13 +70,13 @@ example("key-path") {
 
 example("PassthroughSubject") {
     let subject = PassthroughSubject<String, Never>()
-    subject.sink { value in
+    subject.print("PassthroughSubject01").sink { value in
         print("01: \(value)")
     }
     subject.send("🐶")
     subject.send("🐱")
     
-    subject.sink { value in
+    subject.print("PassthroughSubject02").sink { value in
         print("02: \(value)")
     }
     subject.send("🅰️")
